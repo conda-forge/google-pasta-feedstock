@@ -1,4 +1,4 @@
-{% set version = "0.1.8" %}
+{% set version = "0.2.0" %}
 
 package:
   name: google-pasta
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/g/google-pasta/google-pasta-{{ version }}.tar.gz
-  sha256: 713813a9f7d6589e5defdaf21e80e4392eb124662f8bd829acd51a4f8735c0cb
+  sha256: c9f2c8dfc8f96d0d5808299920721be30c9eec37f2389f28904f454565c8a16e
 
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
