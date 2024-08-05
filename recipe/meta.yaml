@@ -1,24 +1,25 @@
+{% set name = "google-pasta" %}
 {% set version = "0.2.0" %}
 
 package:
-  name: google-pasta
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/g/google-pasta/google-pasta-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/google-pasta-{{ version }}.tar.gz
   sha256: c9f2c8dfc8f96d0d5808299920721be30c9eec37f2389f28904f454565c8a16e
 
 build:
-  number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
 
 requirements:
   host:
+    - python >=3.7
     - pip
-    - python
   run:
-    - python
+    - python >=3.7
     - six
 
 test:
@@ -26,6 +27,10 @@ test:
     - pasta
     - pasta.augment
     - pasta.base
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://github.com/google/pasta
@@ -37,3 +42,4 @@ about:
 extra:
   recipe-maintainers:
     - jjhelmus
+    - ocefpaf
